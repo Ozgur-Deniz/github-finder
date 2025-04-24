@@ -16,9 +16,9 @@ function App() {
   const mainClass =
     location.pathname === "/about"
       ? "min-h-[433.5px] flex justify-center items-center"
-      : "min-h-[433.5px] flex justify-center items-start";
+      : "flex-grow flex flex-col justify-start items-center";
   return (
-    <div className="w-full">
+    <div className="min-h-screen flex flex-col">
       <Navbar></Navbar>
       <div className={mainClass}>
         <Routes>

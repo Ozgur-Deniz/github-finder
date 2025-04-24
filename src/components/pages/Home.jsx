@@ -3,7 +3,7 @@ import UserSearch from '../users/UserSearch'
 import UserResults from '../users/UserResults'
 function Home() {
   return (
-    <div>
+    <div className='w-[80%]'>
       <UserSearch />
       <UserResults />
     </div>
