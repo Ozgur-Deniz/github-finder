@@ -1,12 +1,23 @@
 const githubReducer = (state, action) => {
   switch (action.type) {
+    case "GET_USERNAMES":
+      return {
+        ...state,
+        suggestedUsers: action.payload
+      }
     case "GET_USERS":
       return {
         ...state,
         users: action.payload,
         searched: true,
         loading: false,
+        suggestedUsers: []
       };
+      case "GET_USER":
+        return {
+          loading: false,
+          user: action.payload
+        }
     case "SET_LOADING":
       return {
         ...state,
@@ -17,6 +28,12 @@ const githubReducer = (state, action) => {
         ...state,
         users: [],
         searched: false,
+        suggestedUsers: []
+      };
+      case "CLEAR_SUGUSERS":
+      return {
+        ...state,
+        suggestedUsers: []
       };
     default:
       return state;

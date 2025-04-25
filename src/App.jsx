@@ -10,6 +10,7 @@ import Footer from "./components/layouts/Footer";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import NotFound from "./components/pages/NotFound";
+import User from "./components/pages/User";
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/users/:login" element={<User />} />
           <Route path="/notFound" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
