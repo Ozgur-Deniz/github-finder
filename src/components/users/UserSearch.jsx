@@ -28,13 +28,13 @@ function UserSearch() {
     clearSuggestedUsers();
     setText(e.target.value);
     if (text.length >= 3) {
-      debouncedSearch(text);
+      debouncedSearch(e.target.value);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text === "") {
+    if (text.trim() === "") {
       toast.error("Please typing something!", {
         duration: 3000,
         icon: <MdErrorOutline className="text-2xl mr-5 text-red-800" />,
@@ -69,7 +69,7 @@ function UserSearch() {
             Search
           </button>
         </div>
-        {users.length > 0 && (
+        {users?.length > 0 && (
           <div
             className="flex flex-row justify-center items-center gap-2 bg-[#fafafa] p-3 cursor-pointer font-medium hover:bg-slate-200 transition-colors duration-800"
             onClick={clearUsers}
@@ -79,7 +79,7 @@ function UserSearch() {
           </div>
         )}
       </form>
-      {suggestedUsers.length > 0 && <UserSuggestions />}
+      {suggestedUsers?.length > 0 && <UserSuggestions />}
     </div>
   );
 }

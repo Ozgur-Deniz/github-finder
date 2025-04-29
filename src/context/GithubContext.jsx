@@ -11,6 +11,7 @@ export const GithubProvider = ({ children }) => {
     suggestedUsers: [],
     users: [],
     user: {},
+    userRepos: {},
     loading: false,
     searched: false,
   };
@@ -74,6 +75,21 @@ export const GithubProvider = ({ children }) => {
     }
   };
 
+  const getRepos = async (text) => {
+    setLoading();
+
+    const response = await fetch(`${GITHUB_URL}/users/${text}/repos?sort=updated&per_page=20`, {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`
+      }
+    })
+    const data = await response.json();
+    dispatch({
+      type: 'GET_REPOS',
+      payload: data
+    })
+  }
+
   const setLoading = () => {
     dispatch({
       type: "SET_LOADING",
@@ -98,13 +114,15 @@ export const GithubProvider = ({ children }) => {
         suggestedUsers: state.suggestedUsers,
         users: state.users,
         user: state.user,
+        userRepos: state.userRepos,
         loading: state.loading,
         searched: state.searched,
         getUsernames,
         searchUsers,
         clearUsers,
         clearSuggestedUsers,
-        getUser
+        getUser,
+        getRepos
       }}
     >
       {children}
